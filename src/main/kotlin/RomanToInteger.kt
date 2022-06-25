@@ -1,29 +1,32 @@
 fun main(){
-    val inputString = readln().split("").map { romanToIntegerChar(it) }
-    var step = inputString.size -1
+    val inputString = readln()
+    val hashMap = hashMapOf(
+    "I" to 1,
+    "V" to 5,
+    "X" to 10,
+    "L" to 50,
+    "C" to 100,
+    "D" to 500,
+    "M" to 1000
+    )
+    var step = inputString.length-1
     var resultInt = 0
-    while (step>0){
-        if(inputString[step-1]<inputString[step]){
-            resultInt+=inputString[step]-inputString[step-1]
-            step-=2
+    while (step>=0){
+        if (step==0){
+            resultInt+=hashMap[inputString[0].toString()]!!
         }
-        else{
-            resultInt+=inputString[step]
-            step--
+        else {
+
+            if (hashMap[inputString[step - 1].toString()]!! < hashMap[inputString[step].toString()]!!) {
+                resultInt += hashMap[inputString[step].toString()]!! - hashMap[inputString[step - 1].toString()]!!
+                step -= 2
+            } else {
+                resultInt += hashMap[inputString[step].toString()]!!
+                step--
+            }
         }
     }
     println(resultInt)
 
 }
-fun romanToIntegerChar(input:String):Int{
-    return when(input){
-        "I" -> 1
-        "V" -> 5
-        "X" -> 10
-        "L" -> 50
-        "C" -> 100
-        "D" -> 500
-        "M" -> 1000
-        else -> 0
-    }
-}
+
