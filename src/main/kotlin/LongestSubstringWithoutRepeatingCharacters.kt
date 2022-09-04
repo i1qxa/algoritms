@@ -14,7 +14,7 @@ class Solution5 {
         if (s.length > 1) {
             while (counter < s.length) {
                 tempLength = 1
-                subCounterEnd = counter+1
+                subCounterEnd = counter + 1
                 if (subCounterEnd<s.length){
                     subString = s.substring(counter..subCounterEnd)
                     tempSet.clear()
